@@ -22,6 +22,13 @@ class TodolistController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'task' => 'required',
+                'priority' =>'required',
+                'status' =>'required'
+            ]
+        );
         $todolist = new Todolist;
         $todolist->task = $request['task'];
         $todolist->priority = $request['priority'];
@@ -60,6 +67,13 @@ class TodolistController extends Controller
      }  
      public function update($id, Request $request)
      {
+        $request->validate(
+            [
+                'task' => 'required',
+                'priority' =>'required',
+                'status' =>'required'
+            ]
+        );
         $todolist = Todolist::find($id);
         $todolist->task = $request['task'];
         $todolist->priority = $request['priority'];
